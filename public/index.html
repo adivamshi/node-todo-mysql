@@ -1,0 +1,47 @@
+<!doctype html>
+<html ng-app="todoAngular">
+<head>
+
+    <title>Node/Angular Todo App with MySql</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="js/core.js"></script>
+</head>
+<body>
+<div class="container" ng-controller="mainController as store">
+
+    <div class="jumbotron text-center">
+        <h1>TODO <span class="label label-info">{{store.todos.length}}</span></h1>
+    </div>
+
+    <div class="alert alert-danger" ng-show="store.status.length !== 0" role="alert">
+        <a href="#" class="alert-link" ng-model="store.status"></a>
+    </div>
+
+    <div id="todo-form" class="row">
+        <div class="col-sm-8 col-sm-offset-2 text-center">
+            <form>
+                <div class="form-group">
+                    <input type="text" class="form-control input-lg text-center" placeholder="Enter Text" ng-model="store.formData.text">
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg" ng-click="store.createTodo()">Add</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="todo-list" class="row">
+        <div class="col-sm-4 col-sm-offset-4">
+
+            <div class="checkbox" ng-repeat="todo in store.todos">
+                <label>
+                    <input type="checkbox" ng-click="store.deleteTodo(todo.id)"> {{todo.text}}
+                </label>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
